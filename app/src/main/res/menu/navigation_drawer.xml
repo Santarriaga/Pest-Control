@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/calendarFragment"
+            android:icon="@drawable/ic_calendar"
+            android:title="Calendar"/>
+        <item
+            android:id="@+id/addJobFragment"
+            android:icon="@drawable/ic_add_task"
+            android:title="Add Job"/>
+        <item
+            android:id="@+id/search"
+            android:icon="@drawable/ic_search"
+            android:title="Search Order"/>
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/ic_settings"
+            android:title="Settings"/>
+        <item
+            android:id="@+id/aboutFragment"
+            android:icon="@drawable/ic_about"
+            android:title="About"
+            />
+    </group>
+
+</menu>

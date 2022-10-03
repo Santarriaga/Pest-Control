@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "396197505984",
+    "project_id": "pest-control-767a0",
+    "storage_bucket": "pest-control-767a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396197505984:android:4e09b04ba0d51861e43625",
+        "android_client_info": {
+          "package_name": "com.grumpy.pestcontrol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396197505984-4d1jh3i6vmsrrlm4kget0pad1mda72qr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC_IYtbueFLMK7bLIfid0PlB-PRD_nwyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "396197505984-4d1jh3i6vmsrrlm4kget0pad1mda72qr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
