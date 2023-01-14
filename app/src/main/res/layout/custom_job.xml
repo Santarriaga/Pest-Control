@@ -27,6 +27,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="CV Water District" />
@@ -36,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/tvName"
             app:layout_constraintTop_toBottomOf="@+id/tvName"
             tools:text="62000 Monroe St." />
@@ -45,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/tvStreet"
             app:layout_constraintTop_toBottomOf="@+id/tvStreet"
             tools:text="La Quinta" />
@@ -54,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/tvCity"
             app:layout_constraintStart_toEndOf="@+id/tvCity"
             app:layout_constraintTop_toTopOf="@+id/tvCity"
@@ -64,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/tvState"
             app:layout_constraintStart_toEndOf="@+id/tvState"
             app:layout_constraintTop_toTopOf="@+id/tvState"
@@ -74,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/tvName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvName"
@@ -82,8 +89,8 @@
 
         <ImageButton
             android:id="@+id/btnMap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/ic_location"
             android:background="?attr/selectableItemBackgroundBorderless"
             app:layout_constraintBottom_toBottomOf="@+id/btnPhone"
@@ -94,9 +101,9 @@
 
         <ImageButton
             android:id="@+id/btnPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="15dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_baseline_phone_24"
             app:layout_constraintEnd_toStartOf="@+id/btnMap"
@@ -106,8 +113,8 @@
 
         <ImageButton
             android:id="@+id/btnReschedule"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/ic_schedule"
             android:background="?attr/selectableItemBackgroundBorderless"
             app:layout_constraintBottom_toBottomOf="@+id/btnNotification"
@@ -118,8 +125,8 @@
 
         <ImageButton
             android:id="@+id/btnNotification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/ic_notifications"
             android:background="?attr/selectableItemBackgroundBorderless"
             app:layout_constraintBottom_toBottomOf="@+id/btnMap"

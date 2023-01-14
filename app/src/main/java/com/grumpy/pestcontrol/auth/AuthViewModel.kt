@@ -9,7 +9,7 @@ class AuthViewModel(private val repository: AuthenticationRepository) : ViewMode
     private val userData = repository.getFirebaseUserData()
     private val loggedStatus = repository.getUserLogged()
 
-    //add necessary functions inside coroutine
+    //TODO:add necessary functions inside coroutine
     fun getUserData() : MutableLiveData<FirebaseUser>  {
         return userData
     }

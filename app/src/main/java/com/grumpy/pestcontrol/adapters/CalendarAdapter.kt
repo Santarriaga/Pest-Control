@@ -66,7 +66,7 @@ class CalendarAdapter(
         val displayYear= cal[Calendar.YEAR]
         val displayDay = cal[Calendar.DAY_OF_MONTH]
 
-
+        //set the day
         try {
             val dayInWeek = sdf.parse(cal.time.toString())!!
             sdf.applyPattern("EEE")
@@ -74,14 +74,14 @@ class CalendarAdapter(
         }catch (e : ParseException){
             Log.v("Exception", e.localizedMessage!!)
         }
-
+        //set the date number
         holder.binding.txtDate.text = cal[Calendar.DAY_OF_MONTH].toString()
 
 
         //should clean up
-        if (displayYear >= currentYear)
-            if (displayMonth >= currentMonth || displayYear > currentYear)
-                if (displayDay >= currentDay || displayMonth > currentMonth || displayYear > currentYear) {
+//        if (displayYear >= currentYear)
+//            if (displayMonth >= currentMonth || displayYear > currentYear)
+//                if (displayDay >= currentDay || displayMonth > currentMonth || displayYear > currentYear) {
                     holder.binding.cardLayout.setOnClickListener {
                         index = holder.adapterPosition
                         selectCurrentDate = false
@@ -100,9 +100,9 @@ class CalendarAdapter(
                         else
                             makeItemDefault(holder)
                     }
-                } else makeItemDisabled(holder)
-            else makeItemDisabled(holder)
-        else makeItemDisabled(holder)
+//                } else makeItemDisabled(holder)
+//            else makeItemDisabled(holder)
+//        else makeItemDisabled(holder)
 
 
     }

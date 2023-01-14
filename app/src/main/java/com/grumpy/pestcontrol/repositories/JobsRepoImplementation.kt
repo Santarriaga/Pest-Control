@@ -1,5 +1,7 @@
 package com.grumpy.pestcontrol.repositories
+
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.grumpy.pestcontrol.utils.Constants
@@ -13,8 +15,17 @@ import kotlinx.coroutines.tasks.await
 
 class JobsRepoImplementation : JobsRepoInterface{
 
+    private val firebaseAuth : FirebaseAuth by lazy { FirebaseAuth.getInstance() }
+    lateinit var uid: String
 
-    private val mJobsCollection = FirebaseFirestore.getInstance().collection(Constants.COLLECTION_JOB)
+    init {
+        if(firebaseAuth.currentUser != null){
+            uid =  firebaseAuth.currentUser!!.uid
+//            Log.d("JobRep", uid)
+        }
+    }
+
+    private val mJobsCollection = FirebaseFirestore.getInstance().collection(uid)
 
 
     //Not used currently
@@ -50,6 +61,18 @@ class JobsRepoImplementation : JobsRepoInterface{
     }.flowOn(Dispatchers.IO)
 
 
+    //update entry in database
+    override fun updateJob(job: Job) = flow<Resource<Void>> {
+        emit(Resource.loading())
+        val jobRef = mJobsCollection.document(job.documentId.toString()).set(job).await()
+        emit(Resource.success(jobRef))
+
+    }.catch {
+        emit(Resource.failed(it.message.toString()))
+    }.flowOn(Dispatchers.IO)
+
+
+
     //retrieves all jobs in database
     override fun getJobs() : Flow<Resource<List<Job>>> = callbackFlow {
 
@@ -72,6 +95,28 @@ class JobsRepoImplementation : JobsRepoInterface{
 
         awaitClose {
             //close subscription if UI no longer active
+            subscription.remove()
+            cancel()
+        }
+    }
+
+    //function to retrieve jobs by date
+    override fun getJobByDate(date : String): Flow<Resource<List<Job>>> = callbackFlow {
+        trySend(Resource.loading())
+
+        val eventDoc = mJobsCollection.whereEqualTo("date",date)
+        val subscription = eventDoc.addSnapshotListener { snapshot, exception ->
+            if(snapshot != null){
+                val jobs = snapshot.toObjects(Job::class.java)
+                trySend(Resource.success(jobs)).isSuccess
+            }
+            exception?.let {
+                trySend(Resource.failed(it.message.toString()))
+                cancel(it.message.toString())
+            }
+        }
+
+        awaitClose{
             subscription.remove()
             cancel()
         }

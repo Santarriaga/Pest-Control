@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
     id 'kotlin-parcelize'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -70,5 +71,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation "com.google.firebase:firebase-auth:21.0.6"
 
+
+    //google Places API
+    implementation 'com.google.android.libraries.places:places:3.0.0'
 
 }

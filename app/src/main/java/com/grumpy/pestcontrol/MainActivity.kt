@@ -36,6 +36,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //get current user UID and pass it to fragments
+//        val currentUser = viewModel.getUserData().value
+//        if(currentUser != null){
+//            //Log.d("currentUser", currentUser.uid)
+//        }
 
         viewModel.getLoggedStatus().observe(this, Observer<Boolean>{ loggedOff ->
             if(loggedOff){

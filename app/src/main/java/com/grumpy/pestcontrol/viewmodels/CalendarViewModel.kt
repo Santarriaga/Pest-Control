@@ -19,6 +19,8 @@ class CalendarViewModel(private val repository: JobsRepoImplementation) : ViewMo
     // calls repository
     fun loadJobs() = repository.getJobs()
 
+    fun getJobByDate(date : String) = repository.getJobByDate(date)
+
 
 
 

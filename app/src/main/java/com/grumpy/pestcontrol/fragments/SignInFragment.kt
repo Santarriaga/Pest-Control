@@ -33,6 +33,7 @@ class SignInFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, AuthViewModelFactory()).get(AuthViewModel::class.java)
 
+
         viewModel.getUserData().observe(this, Observer<FirebaseUser>(){ user ->
             if(user != null){
                 val intent = Intent(activity, MainActivity::class.java)

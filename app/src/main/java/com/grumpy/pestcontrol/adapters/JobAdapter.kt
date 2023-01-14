@@ -2,7 +2,6 @@ package com.grumpy.pestcontrol.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.grumpy.pestcontrol.databinding.CustomJobBinding
@@ -21,6 +20,10 @@ class JobAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+        val currentJob = Job(data[position].documentId,data[position].name,data[position].phone,data[position].street,
+            data[position].city,data[position].state, data[position].zipCode,data[position].date,
+            data[position].time,data[position].price,data[position].isCompleted)
+
         holder.binding.tvName.text = data[position].name
         holder.binding.tvStreet.text = data[position].street
         holder.binding.tvCity.text = data[position].city
@@ -35,14 +38,19 @@ class JobAdapter(
             true
         }
 
+        //start the details page
         holder.binding.jobLayout.setOnClickListener {
-            val currentJob = Job(data[position].name,data[position].phone,data[position].street,
-                data[position].city,data[position].state, data[position].zipCode,data[position].date,
-                data[position].time,data[position].price,data[position].isCompleted)
-
             val action = CalendarFragmentDirections.actionCalendarFragmentToJobDetailsFragment(currentJob)
             holder.itemView.findNavController().navigate(action)
         }
+
+        //starts the edit job fragment
+        holder.binding.btnReschedule.setOnClickListener{
+            val action = CalendarFragmentDirections.actionCalendarFragmentToUpdateJobFragment(currentJob)
+            holder.itemView.findNavController().navigate(action)
+        }
+
+
 
     }
 

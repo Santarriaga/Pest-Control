@@ -4,7 +4,8 @@ import androidx.lifecycle.ViewModel
 import com.grumpy.pestcontrol.models.Job
 import com.grumpy.pestcontrol.repositories.JobsRepoImplementation
 
-class AddJobViewModel(private val repository: JobsRepoImplementation) : ViewModel() {
+class UpdateJobViewModel(private val repository: JobsRepoImplementation) : ViewModel() {
 
-    fun addJob(job: Job) = repository.addJob(job)
+    fun updateEntry(job: Job) = repository.updateJob(job)
+
 }

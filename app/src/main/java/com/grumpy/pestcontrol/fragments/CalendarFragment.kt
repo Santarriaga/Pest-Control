@@ -23,6 +23,7 @@ import com.grumpy.pestcontrol.viewmodels.CalendarViewModel
 import com.grumpy.pestcontrol.viewmodels.CalendarViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -107,9 +108,16 @@ class CalendarFragment : Fragment() {
             findNavController().navigate(R.id.action_calendarFragment_to_addJobFragment)
         }
 
-        //get all jobs
+
+        getJobs((currentMonth +1).toString(), currentDay.toString(),currentYear.toString() )
+
+
+    }
+
+    private fun getJobs(month : String, day: String,year :String){
         CoroutineScope(Dispatchers.Main).launch {
-            loadJobs()
+            //loadJobs()
+            loadJobsByDate("$month/$day/$year")
         }
     }
 
@@ -137,6 +145,29 @@ class CalendarFragment : Fragment() {
             }
         }
 
+    }
+
+    //retrieve jobs by date
+    private suspend fun loadJobsByDate(date : String){
+        repeatOnLifecycle(Lifecycle.State.STARTED){
+            viewModel.getJobByDate(date).collect() {state ->
+                when(state){
+                    is Resource.Loading ->{
+                        binding.progressBar.isVisible = true
+                    }
+                    is Resource.Success ->{
+                        binding.progressBar.isVisible = false
+                        list = state.data
+//                        Log.d("CalendarFragment", list.toString())
+                        setupRecyclerView()
+
+                    }
+                    is Resource.Failed ->{
+                        Log.d("CalendarFragment", state.message)
+                    }
+                }
+            }
+        }
     }
 
     private fun setupRecyclerView() = binding.rvJobs.apply {
@@ -202,6 +233,8 @@ class CalendarFragment : Fragment() {
                 val clickCalendar = Calendar.getInstance()
                 clickCalendar.time = dates[position]
                 selectedDay = clickCalendar[Calendar.DAY_OF_MONTH]
+                // retrieves jobs
+                getJobs((selectedMonth +1).toString(), selectedDay.toString(),selectedYear.toString());
             }
         })
 
