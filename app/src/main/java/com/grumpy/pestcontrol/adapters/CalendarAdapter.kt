@@ -78,31 +78,26 @@ class CalendarAdapter(
         holder.binding.txtDate.text = cal[Calendar.DAY_OF_MONTH].toString()
 
 
-        //should clean up
-//        if (displayYear >= currentYear)
-//            if (displayMonth >= currentMonth || displayYear > currentYear)
-//                if (displayDay >= currentDay || displayMonth > currentMonth || displayYear > currentYear) {
-                    holder.binding.cardLayout.setOnClickListener {
-                        index = holder.adapterPosition
-                        selectCurrentDate = false
-                        holder.listener.onItemClick(holder.adapterPosition)
-                        notifyDataSetChanged()
-                    }
+        //sets selected
+        holder.binding.cardLayout.setOnClickListener {
+            index = holder.adapterPosition
+            selectCurrentDate = false
+            holder.listener.onItemClick(holder.adapterPosition)
+            notifyDataSetChanged()
+        }
 
-                    if (index == holder.adapterPosition)
-                        makeItemSelected(holder)
-                    else {
-                        if (displayDay == selectedDay
-                            && displayMonth == selectedMonth
-                            && displayYear == selectedYear
-                            && selectCurrentDate)
-                            makeItemSelected(holder)
-                        else
-                            makeItemDefault(holder)
-                    }
-//                } else makeItemDisabled(holder)
-//            else makeItemDisabled(holder)
-//        else makeItemDisabled(holder)
+        if (index == holder.adapterPosition)
+            makeItemSelected(holder)
+        else {
+            if (displayDay == selectedDay
+                && displayMonth == selectedMonth
+                && displayYear == selectedYear
+                && selectCurrentDate)
+                makeItemSelected(holder)
+            else
+                makeItemDefault(holder)
+        }
+
 
 
     }
