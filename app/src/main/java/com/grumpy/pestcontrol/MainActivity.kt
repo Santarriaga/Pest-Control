@@ -3,15 +3,12 @@ package com.grumpy.pestcontrol
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.google.firebase.auth.FirebaseUser
 import com.grumpy.pestcontrol.auth.AuthViewModel
 import com.grumpy.pestcontrol.auth.AuthViewModelFactory
 import com.grumpy.pestcontrol.databinding.ActivityMainBinding
@@ -36,11 +33,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //get current user UID and pass it to fragments
-//        val currentUser = viewModel.getUserData().value
-//        if(currentUser != null){
-//            //Log.d("currentUser", currentUser.uid)
-//        }
 
         viewModel.getLoggedStatus().observe(this, Observer<Boolean>{ loggedOff ->
             if(loggedOff){

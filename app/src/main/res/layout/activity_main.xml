@@ -22,7 +22,7 @@
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="Pest Control"
+                app:title="C&amp;A Pest Control"
                 app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_menu_24"
                 style="@style/Widget.MaterialComponents.Toolbar.Primary"
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior= "@string/appbar_scrolling_view_behavior"
-            app:defaultNavHost = "false"
+            app:defaultNavHost = "true"
             app:navGraph="@navigation/nav_graph"/>
 
 

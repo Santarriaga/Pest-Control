@@ -18,5 +18,5 @@ data class Job(
     val date : String?=null,
     val time : String?=null,
     val price: String?=null,
-    val isCompleted : Boolean?=null
+    var completed : Boolean?=null
 ) : Parcelable

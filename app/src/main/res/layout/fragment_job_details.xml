@@ -16,108 +16,657 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            app:cardElevation="15dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                app:cardElevation="15dp">
 
-                <TextView
-                    android:id="@+id/tvClientName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Robin Harris" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tvClientPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintStart_toStartOf="@+id/tvClientName"
-                    app:layout_constraintTop_toBottomOf="@+id/tvClientName"
-                    tools:text="760-668-414" />
+                    <ImageView
+                        android:id="@+id/personIcon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_person"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="15dp"
+                        app:tint="@color/purple_500"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tvPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintStart_toStartOf="@+id/tvClientPhone"
-                    app:layout_constraintTop_toBottomOf="@+id/tvClientPhone"
-                    tools:text="Monthly: $35" />
+                    <TextView
+                        android:id="@+id/tvClientName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/personIcon"
+                        app:layout_constraintStart_toEndOf="@id/personIcon"
+                        app:layout_constraintTop_toTopOf="@+id/personIcon"
+                        tools:text="Robin Harris" />
 
-                <TextView
-                    android:id="@+id/tvScheduledTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintStart_toStartOf="@+id/tvPrice"
-                    app:layout_constraintTop_toBottomOf="@+id/tvPrice"
-                    tools:text="4:15AM" />
+                    <ImageView
+                        android:id="@+id/phoneIcon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_phone"
+                        app:tint="@color/purple_500"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/personIcon" />
 
-                <TextView
-                    android:id="@+id/tvScheduledDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@+id/tvScheduledTime"
-                    app:layout_constraintTop_toBottomOf="@+id/tvScheduledTime"
-                    tools:text="Tuesday, Jan 25th, 2022" />
-
-                <TextView
-                    android:id="@+id/tvStreetName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    app:layout_constraintStart_toStartOf="@+id/tvScheduledDate"
-                    app:layout_constraintTop_toBottomOf="@+id/tvScheduledDate"
-                    tools:text="60645 Kimlin Ave" />
-
-                <TextView
-                    android:id="@+id/tvCityName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="15dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tvStreetName"
-                    app:layout_constraintTop_toBottomOf="@+id/tvStreetName"
-                    tools:text="Desert Hot Springs," />
-
-                <TextView
-                    android:id="@+id/tvStateName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tvCityName"
-                    app:layout_constraintStart_toEndOf="@+id/tvCityName"
-                    app:layout_constraintTop_toTopOf="@+id/tvCityName"
-                    tools:text="CA" />
-
-                <TextView
-                    android:id="@+id/tvZip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tvStateName"
-                    app:layout_constraintStart_toEndOf="@+id/tvStateName"
-                    app:layout_constraintTop_toTopOf="@+id/tvStateName"
-                    tools:text="92240" />
+                    <TextView
+                        android:id="@+id/tvClientPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/phoneIcon"
+                        app:layout_constraintStart_toStartOf="@+id/tvClientName"
+                        app:layout_constraintTop_toTopOf="@+id/phoneIcon"
+                        tools:text="760-668-414" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/moneyImage"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        app:tint="@color/purple_500"
+                        android:src="@drawable/ic_money"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/phoneIcon" />
+
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/moneyImage"
+                        app:layout_constraintStart_toStartOf="@+id/tvClientPhone"
+                        app:layout_constraintTop_toTopOf="@+id/moneyImage"
+                        tools:text="Monthly: $35" />
+
+                    <ImageView
+                        android:id="@+id/timeIcon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_time"
+                        app:tint="@color/purple_500"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/moneyImage" />
+
+                    <TextView
+                        android:id="@+id/tvScheduledTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
+                        app:layout_constraintStart_toStartOf="@+id/tvPrice"
+                        app:layout_constraintTop_toTopOf="@+id/timeIcon"
+                        tools:text="4:15AM" />
+
+                    <ImageView
+                        android:id="@+id/calendarIcon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        app:tint="@color/purple_500"
+                        android:src="@drawable/ic_calendar"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/timeIcon" />
+
+                    <TextView
+                        android:id="@+id/tvScheduledDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/calendarIcon"
+                        app:layout_constraintStart_toStartOf="@+id/tvScheduledTime"
+                        app:layout_constraintTop_toTopOf="@+id/calendarIcon"
+                        tools:text="Tuesday, Jan 25th, 2022" />
 
 
-        </com.google.android.material.card.MaterialCardView>
+                    <ImageView
+                        android:id="@+id/locationIcon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_location"
+                        app:tint="@color/purple_500"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/calendarIcon" />
+
+                    <TextView
+                        android:id="@+id/tvStreetName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/locationIcon"
+                        app:layout_constraintStart_toStartOf="@+id/tvScheduledDate"
+                        app:layout_constraintTop_toTopOf="@+id/locationIcon"
+                        tools:text="60645 Kimlin Ave" />
+
+                    <TextView
+                        android:id="@+id/tvCityName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="15dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvStreetName"
+                        app:layout_constraintTop_toBottomOf="@+id/tvStreetName"
+                        tools:text="Desert Hot Springs," />
+
+                    <TextView
+                        android:id="@+id/tvStateName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvCityName"
+                        app:layout_constraintStart_toEndOf="@+id/tvCityName"
+                        app:layout_constraintTop_toTopOf="@+id/tvCityName"
+                        tools:text="CA" />
+
+                    <TextView
+                        android:id="@+id/tvZip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvStateName"
+                        app:layout_constraintStart_toEndOf="@+id/tvStateName"
+                        app:layout_constraintTop_toTopOf="@+id/tvStateName"
+                        tools:text="92240" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:cardElevation="15dp"
+                android:layout_margin="20dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/noteIcon"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        app:tint="@color/purple_500"
+                        android:src="@drawable/ic_baseline_note"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Notes"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/noteIcon"
+                        app:layout_constraintStart_toEndOf="@+id/noteIcon"
+                        app:layout_constraintTop_toTopOf="@+id/noteIcon" />
+
+                    <ImageButton
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_add"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/materialDivider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@+id/noteIcon" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="...This are currently no notes"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        app:layout_constraintTop_toBottomOf="@+id/materialDivider"
+                       />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:cardElevation="15dp"
+                android:layout_margin="20dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/moneyIcon"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/ic_cards"
+                        app:tint="@color/purple_500"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Stripe"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/moneyIcon"
+                        app:layout_constraintStart_toEndOf="@+id/moneyIcon"
+                        app:layout_constraintTop_toTopOf="@+id/moneyIcon" />
+
+                    <ImageButton
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_add"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/materialDivider2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@+id/moneyIcon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/materialDivider2"
+                        android:text="**** 5555" />
+
+                    <ImageButton
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/ic_kebab_menu"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/materialDivider2" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="15dp"
+                android:layout_margin="20dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/invoiceIcon"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/ic_invoice"
+                        app:tint="@color/purple_500"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Invoice"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/invoiceIcon"
+                        app:layout_constraintStart_toEndOf="@+id/invoiceIcon"
+                        app:layout_constraintTop_toTopOf="@+id/invoiceIcon" />
+
+                    <TextView
+                        android:id="@+id/txtInvoiceNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#12183283018"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                        app:layout_constraintStart_toEndOf="@+id/textView3"
+                        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/materialDivider3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@+id/invoiceIcon" />
+
+                    <TextView
+                        android:id="@+id/textService"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Service Fee"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/materialDivider3" />
+
+                    <TextView
+                        android:id="@+id/txtMultiplier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="x1"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintStart_toStartOf="@+id/textService"
+                        app:layout_constraintTop_toBottomOf="@+id/textService" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="$35.00"
+                        app:layout_constraintStart_toEndOf="@id/txtMultiplier"
+                        app:layout_constraintTop_toBottomOf="@id/txtMultiplier"
+                        app:layout_constraintTop_toTopOf="@id/txtMultiplier" />
+
+                    <TextView
+                        android:id="@+id/textServiceFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$35.00"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp"
+                        android:textColor="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textService" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/materialDivider6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@+id/txtMultiplier" />
+
+                    <TextView
+                        android:id="@+id/subtotalTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Subtotal"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/materialDivider6" />
+
+                    <TextView
+                        android:id="@+id/totalTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Total"
+                        app:layout_constraintStart_toStartOf="@+id/subtotalTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/subtotalTitle" />
+
+                    <TextView
+                        android:id="@+id/subtotalAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$35.00"
+                        android:textColor="@color/black"
+                        android:layout_marginEnd="15dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/subtotalTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/subtotalTitle" />
+
+                    <TextView
+                        android:id="@+id/totalAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$35.00"
+                        android:textColor="@color/black"
+                        android:layout_marginEnd="15dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/totalTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/totalTitle" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/materialDivider7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@+id/totalTitle" />
+
+                    <TextView
+                        android:id="@+id/amountPaidTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Amount Paid"
+                        app:layout_constraintStart_toStartOf="@+id/materialDivider7"
+                        app:layout_constraintTop_toBottomOf="@+id/materialDivider7" />
+
+                    <TextView
+                        android:id="@+id/amountDueTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Amount Due"
+                        app:layout_constraintStart_toStartOf="@+id/amountPaidTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/amountPaidTitle" />
+
+                    <TextView
+                        android:id="@+id/balanceDueTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Balance"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="@+id/amountDueTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/amountDueTitle" />
+
+                    <TextView
+                        android:id="@+id/paidAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0.00"
+                        android:textColor="@color/black"
+                        android:layout_marginEnd="15dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/amountPaidTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/amountPaidTitle" />
+
+                    <TextView
+                        android:id="@+id/dueAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$35.00"
+                        android:textColor="@color/black"
+                        android:layout_marginEnd="15dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/amountDueTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/amountDueTitle" />
+
+                    <TextView
+                        android:id="@+id/balanceAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0.00"
+                        android:textColor="@color/black"
+                        android:layout_marginEnd="15dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/balanceDueTitle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/balanceDueTitle" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/materialDivider8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@+id/balanceDueTitle" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Open Invoice History "
+                        android:textColor="@color/green"
+                        android:layout_marginEnd="15dp"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/materialDivider8" />
+
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="15dp"
+                android:layout_margin="20dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/chemicalIcon"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/ic_chemicals"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/purple_500" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Materials"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/chemicalIcon"
+                        app:layout_constraintStart_toEndOf="@+id/chemicalIcon"
+                        app:layout_constraintTop_toTopOf="@+id/chemicalIcon" />
+
+                    <ImageButton
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_add"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/materialDivider4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@+id/chemicalIcon" />
+
+                    <TextView
+                        android:id="@+id/txtChemical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@+id/materialDivider4"
+                        tools:layout_editor_absoluteX="15dp"
+                        android:text="Bifen I/T BifenThrin 7.9% EPA# 53883-118 1.70 oz" />
+
+                    <TextView
+                        android:id="@+id/txtChemicalDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Common Areas, Exterior Foundation"
+                        app:layout_constraintTop_toBottomOf="@+id/txtChemical"
+                        app:layout_constraintStart_toStartOf="@id/txtChemical"
+                        />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/materialDivider5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@+id/txtChemicalDetails" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Open Material History "
+                        android:textColor="@color/green"
+                        android:layout_marginEnd="15dp"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/materialDivider5" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+
+
+
+
+
 
     </androidx.core.widget.NestedScrollView>
 

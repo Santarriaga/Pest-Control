@@ -1,11 +1,17 @@
 package com.grumpy.pestcontrol.fragments
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -23,7 +29,6 @@ import com.grumpy.pestcontrol.viewmodels.CalendarViewModel
 import com.grumpy.pestcontrol.viewmodels.CalendarViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -114,65 +119,14 @@ class CalendarFragment : Fragment() {
 
     }
 
-    private fun getJobs(month : String, day: String,year :String){
-        CoroutineScope(Dispatchers.Main).launch {
-            //loadJobs()
-            loadJobsByDate("$month/$day/$year")
-        }
-    }
-
-
-
-    //function retrieves jobs from viewModel
-    private suspend fun loadJobs(){
-
-        repeatOnLifecycle(Lifecycle.State.STARTED){
-            viewModel.loadJobs().collect(){state ->
-                when(state){
-                    is Resource.Loading ->{
-                        binding.progressBar.isVisible = true
-                    }
-                    is Resource.Success ->{
-                        binding.progressBar.isVisible = false
-                        list = state.data
-                        setupRecyclerView()
-
-                    }
-                    is Resource.Failed ->{
-                        Log.d("CalendarFragment", state.message)
-                    }
-                }
-            }
-        }
-
-    }
-
-    //retrieve jobs by date
-    private suspend fun loadJobsByDate(date : String){
-        repeatOnLifecycle(Lifecycle.State.STARTED){
-            viewModel.getJobByDate(date).collect() {state ->
-                when(state){
-                    is Resource.Loading ->{
-                        binding.progressBar.isVisible = true
-                    }
-                    is Resource.Success ->{
-                        binding.progressBar.isVisible = false
-                        list = state.data
-//                        Log.d("CalendarFragment", list.toString())
-                        setupRecyclerView()
-
-                    }
-                    is Resource.Failed ->{
-                        Log.d("CalendarFragment", state.message)
-                    }
-                }
-            }
-        }
-    }
-
     private fun setupRecyclerView() = binding.rvJobs.apply {
 
-        jobAdapter = JobAdapter(data = list)
+        jobAdapter = JobAdapter(
+            data = list,
+            updateJobCompleted = {sendUpdate(it)},
+            makePhoneCall = {startCall(it)},
+            openMaps = {startMaps(it)}
+        )
         adapter = jobAdapter
         layoutManager = LinearLayoutManager(activity)
     }
@@ -223,7 +177,7 @@ class CalendarFragment : Fragment() {
         when{
             currentPosition > 2 ->
                 binding.calendarRecyclerView.scrollToPosition(currentPosition - 3)
-                maxDaysInMonth - currentPosition < 2 -> binding.calendarRecyclerView.scrollToPosition(currentPosition)
+            maxDaysInMonth - currentPosition < 2 -> binding.calendarRecyclerView.scrollToPosition(currentPosition)
             else ->
                 binding.calendarRecyclerView.scrollToPosition(currentPosition)
         }
@@ -240,6 +194,110 @@ class CalendarFragment : Fragment() {
 
 
     }
+
+    private fun getJobs(month : String, day: String,year :String){
+        CoroutineScope(Dispatchers.Main).launch {
+            //loadJobs()
+            loadJobsByDate("$month/$day/$year")
+        }
+    }
+
+    private fun startMaps(job: Job){
+//        val gmmIntentUri = Uri.parse("geo:0,0?q=1600 Amphitheatre Parkway, Mountain+View, California")
+        val gmmIntentUri = Uri.parse("geo:0,0?q=${job.street}, ${job.city}, ${job.state}")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(mapIntent)
+    }
+
+
+
+
+    private fun startCall(phoneNumber : String){
+        checkPermissions()
+//        val callIntent = Intent(Intent.ACTION_CALL)
+        val callIntent = Intent(Intent.ACTION_DIAL)
+        callIntent.data = Uri.parse("tel:$phoneNumber")
+        startActivity(callIntent)
+    }
+    private fun checkPermissions(){
+        if( context?.let { ActivityCompat.checkSelfPermission(it,  Manifest.permission.CALL_PHONE) } != PackageManager.PERMISSION_GRANTED ){
+            ActivityCompat.requestPermissions(context as Activity, arrayOf(Manifest.permission.CALL_PHONE), 101 )
+        }
+    }
+
+
+    //function retrieves jobs from viewModel
+    private suspend fun loadJobs(){
+
+        repeatOnLifecycle(Lifecycle.State.STARTED){
+            viewModel.loadJobs().collect(){state ->
+                when(state){
+                    is Resource.Loading ->{
+                        binding.progressBar.isVisible = true
+                    }
+                    is Resource.Success ->{
+                        binding.progressBar.isVisible = false
+                        list = state.data
+                        setupRecyclerView()
+
+                    }
+                    is Resource.Failed ->{
+                        Log.d("CalendarFragment", state.message)
+                    }
+                }
+            }
+        }
+
+    }
+
+    //retrieve jobs by date
+    private suspend fun loadJobsByDate(date : String){
+        repeatOnLifecycle(Lifecycle.State.STARTED){
+            viewModel.getJobByDate(date).collect() {state ->
+                when(state){
+                    is Resource.Loading ->{
+                        binding.progressBar.isVisible = true
+                    }
+                    is Resource.Success ->{
+                        binding.progressBar.isVisible = false
+                        list = state.data
+//                        Log.d("CalendarFragment", list.toString())
+                        setupRecyclerView()
+
+                    }
+                    is Resource.Failed ->{
+                        Log.d("CalendarFragment", state.message)
+                    }
+                }
+            }
+        }
+    }
+
+
+    //update job on database after user marks completed
+    private fun sendUpdate(job: Job){
+//        Toast.makeText(activity,"Job was updated", Toast.LENGTH_SHORT).show()
+//        Log.d("JobAdapter", job.toString())
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.updateEntry(job).collect(){ state ->
+                when(state){
+                    is Resource.Loading ->{
+                        binding.progressBar.isVisible = true
+                    }
+                    is Resource.Success ->{
+                        binding.progressBar.isVisible = false
+                    }
+                    is Resource.Failed ->{
+                        Log.d("CalendarFragment", state.message)
+                    }
+
+                }
+            }
+        }
+    }
+
+
 
 
     override fun onDestroyView() {

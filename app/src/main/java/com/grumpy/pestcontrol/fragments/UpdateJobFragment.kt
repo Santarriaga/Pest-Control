@@ -22,8 +22,6 @@ import com.grumpy.pestcontrol.viewmodels.UpdateJobViewModel
 import com.grumpy.pestcontrol.viewmodels.UpdateJobViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -37,21 +35,21 @@ class UpdateJobFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private var _binding : FragmentUpdateJobBinding ?= null
     private val binding get() = _binding!!
 
-    var day = 0
-    var month = 0
-    var year = 0
-    var hour = 0
-    var minute = 0
+    private var day = 0
+    private var month = 0
+    private var year = 0
+    private var hour = 0
+    private var minute = 0
 
-    var savedDay = 0
-    var savedMonth = 0
-    var savedYear = 0
+    private var savedDay = 0
+    private var savedMonth = 0
+    private var savedYear = 0
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentUpdateJobBinding.inflate(inflater,container,false)
         return binding.root
@@ -77,7 +75,7 @@ class UpdateJobFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             val time = binding.edtTime.text.toString()
             val price = binding.edtPrice.text.toString()
 
-            val job =  Job(args.currentJob.documentId,client,phone,address,city,state,zip,date,time,price,false)
+            val job =  Job(args.currentJob.documentId,client,phone,address,city,state,zip,date,time,price,args.currentJob.completed)
 
             CoroutineScope(Dispatchers.Main).launch {
                 updateJob(job)

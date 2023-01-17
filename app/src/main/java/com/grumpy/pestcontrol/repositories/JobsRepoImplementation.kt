@@ -1,10 +1,8 @@
 package com.grumpy.pestcontrol.repositories
 
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.grumpy.pestcontrol.utils.Constants
 import com.grumpy.pestcontrol.utils.Resource
 import com.grumpy.pestcontrol.models.Job
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +14,7 @@ import kotlinx.coroutines.tasks.await
 class JobsRepoImplementation : JobsRepoInterface{
 
     private val firebaseAuth : FirebaseAuth by lazy { FirebaseAuth.getInstance() }
-    lateinit var uid: String
+    private lateinit var uid: String
 
     init {
         if(firebaseAuth.currentUser != null){
